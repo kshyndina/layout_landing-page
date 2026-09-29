@@ -402,6 +402,90 @@ summary{align-items:center;padding-block:4px}
   #contact input,#contact select,#contact textarea{border-radius:26px 26px 9px 26px}
 }
 
+
+/* v6 craft cleanup: keep the brand shapes, remove unstable interaction noise */
+#fysm .principle{
+  border-radius:0!important;
+  padding:22px 0!important;
+  box-shadow:none!important;
+}
+#fysm .principle:nth-child(1),
+#fysm .principle:nth-child(2),
+#fysm .principle:nth-child(3),
+#fysm .principle:nth-child(4){
+  border-radius:0!important;
+}
+#fysm .principle::after{content:none!important}
+
+.price-card.arch::after{content:none!important}
+
+.contact-card input,
+.contact-card select,
+.contact-card textarea{
+  min-height:48px;
+  padding:12px 14px;
+  border:1px solid rgba(37,77,64,.24);
+  border-radius:22px 22px 7px 22px;
+  background:rgba(244,240,228,.48);
+  transition-property:border-color,background-color,box-shadow;
+  transition-duration:140ms;
+  transition-timing-function:var(--ease-out);
+}
+.contact-card textarea{min-height:104px}
+.contact-card input:focus,
+.contact-card select:focus,
+.contact-card textarea:focus{
+  border:1px solid var(--forest);
+  background:var(--paper);
+  box-shadow:0 0 0 3px rgba(37,77,64,.10);
+}
+.contact-card .field{gap:7px}
+.contact-card form{gap:14px}
+
+.btn{
+  transition-property:transform,background-color,color,box-shadow;
+  transition-duration:140ms;
+  transition-timing-function:var(--ease-out);
+}
+.btn:hover,.btn:focus-visible{transform:none}
+.btn:active{transform:scale(.96)}
+.btn.primary:hover,.btn.primary:focus-visible{
+  background:var(--forest-dark);
+  box-shadow:3px 4px 0 var(--coral);
+}
+a.resource{
+  transition-property:transform,background-color;
+  transition-duration:140ms;
+  transition-timing-function:var(--ease-out);
+}
+a.resource:hover,a.resource:focus-visible{
+  transform:translateY(-1px);
+  background:var(--butter);
+}
+.next-item:hover .next-arrow{transform:translateX(3px)}
+
+.nav-links a::before{
+  transition-property:transform,opacity;
+  transition-duration:140ms;
+  transition-timing-function:var(--ease-out);
+}
+.nav-links a:hover::before,.nav-links a:focus-visible::before{
+  transform:scale(1) rotate(-2deg);
+  opacity:1;
+}
+
+@media(hover:none){
+  .nav-links a::before{display:none}
+  .btn:hover,.resource:hover{transform:none}
+}
+
+@media(min-width:760px){
+  #fysm .principle{padding:24px 0!important}
+  .contact-card input,
+  .contact-card select,
+  .contact-card textarea{border-radius:26px 26px 9px 26px}
+}
+
 </style>
 </head>
 <body>
