@@ -492,6 +492,325 @@ section[id]{scroll-margin-top:88px}
 button,a,.btn,.filter,summary{touch-action:manipulation}
 input,select,textarea{font-size:16px}
 
+
+/* v8 screenshot QA + mobile-first cleanup */
+.schedule-note{
+  margin-top:7px;
+  font-size:14px;
+  color:rgba(244,240,228,.68);
+}
+.faq{border-top:0!important}
+.faq details{padding:0}
+.faq summary{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 24px;
+  align-items:center;
+  gap:16px;
+  max-width:none;
+  min-height:64px;
+  padding:16px 0;
+  line-height:1.08;
+}
+.faq summary::after{
+  content:'';
+  width:10px;
+  height:10px;
+  justify-self:center;
+  border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);
+  transform-origin:center;
+  transition:transform 140ms var(--ease-out);
+}
+.faq details[open] summary::after{
+  transform:rotate(225deg) translate(-2px,-2px);
+}
+.faq details p{
+  padding:0 40px 18px 0;
+}
+.faq-wrap h2{
+  margin-bottom:20px;
+}
+
+.contact-card,
+.price-card,
+.schedule-shell,
+.next-board,
+.resource{
+  box-shadow:none!important;
+}
+.contact-card{
+  border-radius:28px 28px 10px 28px!important;
+}
+.contact-card::after{
+  width:24px!important;
+  height:18px!important;
+  right:24px!important;
+  bottom:-14px!important;
+}
+.contact-card input,
+.contact-card select,
+.contact-card textarea{
+  border-radius:12px!important;
+}
+.btn{
+  border-radius:16px 16px 6px 16px!important;
+}
+.filter{border-radius:999px!important}
+
+.price-card.bubble{
+  border-radius:28px 28px 28px 10px!important;
+}
+.price-card.arch{
+  border-radius:34px 34px 12px 12px!important;
+}
+.price-card.fold{
+  border-radius:28px 10px 28px 28px!important;
+}
+.price-card.fold::after{
+  width:28px!important;
+  height:28px!important;
+  right:12px!important;
+  top:12px!important;
+  background:rgba(244,240,228,.72)!important;
+}
+.price-top strong{
+  position:relative;
+  z-index:2;
+}
+
+.resource{
+  border-radius:22px 22px 8px 22px!important;
+}
+.resource:nth-child(2){
+  border-radius:28px 14px 28px 14px!important;
+}
+.resource:nth-child(3){
+  border-radius:14px 28px 14px 28px!important;
+}
+
+.schedule-shell{
+  border-radius:30px 30px 10px 30px!important;
+}
+.next-board{
+  border-radius:24px 24px 24px 8px!important;
+}
+
+@media(max-width:759px){
+  :root{--pad:20px}
+  .section{padding:62px 0}
+  .nav-inner{
+    min-height:64px;
+    gap:8px;
+  }
+  .brand-mark{
+    width:66px;
+    height:auto;
+    aspect-ratio:auto;
+    object-fit:contain;
+    filter:contrast(1.08) saturate(1.03);
+  }
+  .nav-links{
+    gap:1px;
+    font-size:11.5px;
+    letter-spacing:-.01em;
+  }
+  .nav-links a{
+    padding:10px 6px;
+  }
+
+  .next-up{padding:14px 0 10px}
+  .next-board{padding:16px 14px 10px}
+
+  .hero{
+    min-height:70svh;
+    padding:54px 0 52px;
+  }
+  .hero h1{
+    font-size:clamp(56px,16.5vw,82px);
+    line-height:.88;
+  }
+  .hero-copy{
+    font-size:18px;
+    max-width:33ch;
+  }
+
+  .for-you{
+    padding-top:62px;
+    padding-bottom:62px;
+  }
+  .for-you h2{
+    max-width:none;
+    margin-bottom:34px;
+    font-size:clamp(44px,12vw,58px);
+    line-height:.92;
+  }
+  .for-list{
+    gap:20px;
+  }
+  .for-item,
+  .for-item:nth-child(2),
+  .for-item:nth-child(3),
+  .for-item:nth-child(4){
+    padding:0 0 0 34px!important;
+    font-size:clamp(34px,9.5vw,46px);
+    line-height:1.02;
+  }
+  .for-item::before,
+  .for-item:nth-child(2)::before,
+  .for-item:nth-child(3)::before,
+  .for-item:nth-child(4)::before{
+    left:2px!important;
+    top:14%!important;
+    width:10px!important;
+    height:72%!important;
+    border-radius:10px 4px 10px 4px!important;
+    transform:rotate(2deg)!important;
+  }
+
+  .pricing-grid{
+    gap:18px;
+    margin-top:24px;
+  }
+  .price-card{
+    min-height:auto;
+    padding:24px 20px 24px;
+  }
+  .price-top{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    margin-bottom:28px;
+  }
+  .price-top strong{
+    text-align:left;
+    font-size:44px;
+  }
+  .price-card h3{
+    font-size:38px;
+    margin-bottom:12px;
+  }
+  .price-card>p{
+    margin-bottom:24px;
+  }
+
+  .faq-wrap{
+    padding-top:62px;
+    padding-bottom:58px;
+  }
+  .faq-wrap h2{
+    font-size:clamp(46px,12vw,58px);
+    line-height:.94;
+    margin-bottom:18px;
+  }
+  .faq summary{
+    font-size:23px;
+    padding:17px 0;
+  }
+
+  #community{
+    padding-top:58px;
+  }
+  #community h2{
+    font-size:clamp(44px,12vw,58px);
+    line-height:.94;
+  }
+  .resources{
+    margin-top:24px;
+    gap:12px;
+  }
+  .resource{
+    padding:18px;
+  }
+  .resource-title{
+    font-size:26px;
+  }
+
+  .schedule-shell{
+    padding:22px 16px 28px;
+  }
+  .schedule-shell::after{
+    width:26px;
+    height:20px;
+    left:24px;
+    bottom:-13px;
+  }
+  .schedule-head{
+    gap:14px;
+    margin-bottom:18px;
+  }
+  #schedule h2{
+    font-size:clamp(46px,12vw,58px);
+  }
+  .event{
+    grid-template-columns:78px minmax(0,1fr);
+    gap:12px;
+    padding:16px 0;
+  }
+  .event h3{
+    font-size:22px;
+    line-height:1.04;
+  }
+  .event-date{font-size:20px}
+  .event-meta{font-size:12px}
+
+  #contact{
+    padding-top:60px;
+    padding-bottom:68px;
+  }
+  .contact-grid{
+    gap:22px;
+  }
+  .contact-copy h2{
+    font-size:clamp(44px,12vw,58px);
+    line-height:.94;
+  }
+  .contact-copy p{
+    font-size:18px;
+  }
+  .contact-card{
+    padding:22px 18px 24px!important;
+  }
+  .contact-card h3{
+    font-size:34px;
+  }
+  .contact-card>p{
+    margin-bottom:18px;
+  }
+  .contact-card input,
+  .contact-card select,
+  .contact-card textarea{
+    min-height:48px;
+    padding:12px 13px;
+  }
+  .contact-card textarea{
+    min-height:96px;
+  }
+
+  .footer{
+    border-radius:30px 30px 0 0;
+    padding-top:52px;
+  }
+  .footer::before{
+    right:-150px;
+    top:36px;
+    width:280px;
+    height:120px;
+    border-width:22px;
+  }
+}
+
+@media(min-width:760px){
+  .contact-card{
+    border-radius:36px 36px 14px 36px!important;
+  }
+  .contact-card input,
+  .contact-card select,
+  .contact-card textarea{
+    border-radius:14px!important;
+  }
+}
+
 </style>
 </head>
 <body>
