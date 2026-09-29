@@ -644,10 +644,36 @@ input,select,textarea{font-size:16px}
 </footer>
 
 <script>
-const EVENTS = [
-  // Add confirmed sessions here. Example shape:
-  // {date:'04 Oct', title:'Free FYSM practice', where:'Da Nang', time:'08:00', tags:['free','da-nang']}
+const WEEKLY = [
+  {day:1,time:'18:00',title:'Online live: strength + mobility',where:'Online',tags:['online','live']},
+  {day:2,time:'18:00',title:'Online live: full body control',where:'Online',tags:['online','live']},
+  {day:3,time:'18:00',title:'Free community FYSM',where:'Da Nang',tags:['free','da-nang']},
+  {day:4,time:'18:00',title:'Online live: hips + spine',where:'Online',tags:['online','live']},
+  {day:5,time:'18:00',title:'Online live: reset + mobility',where:'Online',tags:['online','live']},
+  {day:6,time:'10:00',title:'Free community FYSM',where:'Da Nang',tags:['free','da-nang']},
+  {day:0,time:'10:00',title:'Online live: slow strength',where:'Online',tags:['online','live']}
 ];
+
+function buildRecurringEvents(daysAhead=14){
+  const now=new Date();
+  const start=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const formatter=new Intl.DateTimeFormat('en-GB',{weekday:'short',day:'2-digit',month:'short'});
+  const out=[];
+  for(let offset=0;offset<daysAhead;offset++){
+    const d=new Date(start);
+    d.setDate(start.getDate()+offset);
+    WEEKLY.filter(item=>item.day===d.getDay()).forEach(item=>{
+      const [hh,mm]=item.time.split(':').map(Number);
+      const when=new Date(d);
+      when.setHours(hh,mm,0,0);
+      if(when<now)return;
+      out.push({...item,date:formatter.format(when),sort:when.getTime()});
+    });
+  }
+  return out.sort((a,b)=>a.sort-b.sort);
+}
+
+const EVENTS = buildRecurringEvents();
 
 const nextList=document.getElementById('next-list');
 const calendar=document.getElementById('calendar');
