@@ -241,6 +241,167 @@ a.resource:hover,a.resource:focus-visible{transform:translateY(-2px) rotate(-.4d
   .resource:first-child{grid-column:auto}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* v5 UI Skills + Please, Hold shape system */
+:root{
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --bubble:44px 44px 14px 44px;
+  --bubble-flip:44px 14px 44px 44px;
+  --bubble-soft:54px 54px 24px 54px;
+}
+[hidden]{display:none!important}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+.price-top strong{font-variant-numeric:tabular-nums}
+
+.nav-links a,.btn,.filter,summary{min-height:44px}
+.nav-links a{display:inline-flex;align-items:center}
+.btn,.filter{border-radius:999px}
+.btn{
+  box-shadow:none!important;
+  transition-property:transform,background-color,color,box-shadow;
+  transition-duration:140ms;
+  transition-timing-function:var(--ease-out);
+}
+.btn:active,.filter:active,.nav-links a:active{transform:scale(.96)}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid var(--coral);
+  outline-offset:3px;
+}
+@media(hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-2px)}
+  .nav-links a:hover{color:#b96350}
+}
+
+.hero h1 span{
+  position:relative;
+  z-index:0;
+  background:none;
+  padding:0 .04em .04em;
+  transform:none;
+  color:var(--forest-dark);
+}
+.hero h1 span::before{
+  content:'';
+  position:absolute;
+  z-index:-1;
+  inset:8% -5% 2% -4%;
+  background:var(--coral);
+  border-radius:52% 48% 46% 54% / 58% 52% 48% 42%;
+  transform:rotate(-3deg);
+}
+.hero-copy{border-left:0;padding-left:0;position:relative}
+.hero-copy::before{
+  content:'';
+  display:block;
+  width:78px;
+  height:10px;
+  margin-bottom:16px;
+  background:var(--forest);
+  border-radius:999px 18px 999px 18px;
+}
+
+#fysm .principles{gap:14px}
+#fysm .principle{
+  border-radius:var(--bubble-soft);
+  padding:78px 22px 26px;
+  box-shadow:none;
+}
+#fysm .principle:nth-child(1){border-radius:54px 54px 18px 54px}
+#fysm .principle:nth-child(2){border-radius:54px 18px 54px 54px}
+#fysm .principle:nth-child(3){border-radius:42% 58% 48% 52% / 54% 44% 56% 46%}
+#fysm .principle:nth-child(4){border-radius:54px 54px 54px 18px}
+#fysm .principle::after{
+  content:'';
+  position:absolute;
+  width:26px;height:26px;
+  background:currentColor;
+  opacity:.10;
+  right:22px;bottom:18px;
+  border-radius:70% 30% 64% 36% / 40% 65% 35% 60%;
+}
+
+.pricing-grid{gap:18px}
+.price-card{
+  position:relative;
+  overflow:visible;
+  border-radius:var(--bubble);
+  padding:26px 24px 28px;
+}
+.price-card::after{
+  content:'';
+  position:absolute;
+  width:28px;height:28px;
+  background:inherit;
+  bottom:0;
+  clip-path:polygon(0 0,100% 100%,0 100%);
+}
+.price-card:nth-child(1){border-radius:48px 48px 14px 48px}
+.price-card:nth-child(1)::after{right:30px}
+.price-card:nth-child(2){border-radius:48px 16px 48px 48px}
+.price-card:nth-child(2)::after{left:30px;transform:scaleX(-1)}
+.price-card:nth-child(3){border-radius:48px 48px 48px 16px}
+.price-card:nth-child(3)::after{right:36px}
+
+#schedule .empty{
+  max-width:720px;
+  margin-top:18px;
+  padding:28px 26px 30px;
+  background:rgba(244,240,228,.08);
+  border-radius:44px 44px 16px 44px;
+}
+.event-tags span{border-radius:999px}
+
+#contact .form-block{
+  position:relative;
+  border-radius:44px 44px 16px 44px;
+  box-shadow:none;
+  padding:24px;
+}
+#contact .form-block::after{
+  content:'';
+  position:absolute;
+  width:30px;height:30px;
+  right:34px;bottom:-1px;
+  background:var(--paper);
+  clip-path:polygon(0 0,100% 100%,0 100%);
+}
+#contact form{gap:14px}
+#contact label{display:grid;gap:7px}
+#contact input,#contact select,#contact textarea{
+  min-height:48px;
+  border:1px solid rgba(37,77,64,.28);
+  border-radius:22px 22px 7px 22px;
+  padding:13px 15px;
+  background:rgba(232,223,165,.18);
+}
+#contact textarea{min-height:104px}
+#contact input:focus,#contact select:focus,#contact textarea:focus{border:1px solid var(--forest)}
+.form-status{min-height:1.5em;margin-top:14px;font-weight:700}
+
+summary{align-items:center;padding-block:4px}
+.footer-mark{border-radius:48% 52% 46% 54% / 52% 48% 54% 46%}
+
+@media(prefers-reduced-motion:no-preference){
+  .hero h1,.hero-copy,.hero-actions{
+    animation-duration:420ms;
+    animation-timing-function:var(--ease-out);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+  }
+}
+@media(min-width:760px){
+  #fysm .principle{padding:92px 30px 30px}
+  .price-card{padding:30px 28px 32px}
+  #contact .form-block{padding:32px;border-radius:58px 58px 20px 58px}
+  #contact input,#contact select,#contact textarea{border-radius:26px 26px 9px 26px}
+}
+
 </style>
 </head>
 <body>
