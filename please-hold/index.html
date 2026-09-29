@@ -492,6 +492,87 @@ a.resource:hover,a.resource:focus-visible{
   .footer-mark{width:130px;margin-bottom:30px}
 }
 
+
+/* PRICING: old service choices, now with actual numbers */
+#pricing{
+  background:#efe9d8;
+  border-top:0;
+}
+.pricing-grid{
+  display:grid;
+  gap:12px;
+}
+.price-card{
+  min-height:330px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  border:0;
+}
+.price-card .price-top{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  margin-bottom:56px;
+  font-weight:800;
+}
+.price-card .price-top>span{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.price-card .price-top strong{
+  font:800 clamp(34px,10vw,54px)/.9 var(--display);
+  letter-spacing:-.05em;
+  text-align:right;
+}
+.price-card .price-top small{
+  font:700 13px/1 var(--body);
+  letter-spacing:0;
+}
+.price-card h3{
+  max-width:8ch;
+  margin-bottom:10px;
+}
+.price-card p{
+  max-width:34ch;
+  margin-bottom:24px;
+  opacity:.78;
+}
+.price-card .btn{
+  margin-top:auto;
+}
+.price-free{
+  background:var(--forest);
+  color:var(--paper);
+}
+.price-free .btn{
+  color:var(--forest-dark);
+  background:var(--paper);
+  border-color:var(--paper);
+  box-shadow:4px 4px 0 var(--coral);
+}
+.price-studio{
+  background:var(--coral);
+  color:var(--forest-dark);
+}
+.price-private{
+  background:var(--butter);
+  color:var(--forest-dark);
+}
+.price-studio .btn,.price-private .btn{
+  background:var(--forest);
+  color:var(--paper);
+  border-color:var(--forest);
+}
+@media(min-width:760px){
+  .pricing-grid{grid-template-columns:repeat(3,1fr);gap:14px}
+  .price-card{min-height:410px;padding:28px}
+}
+
 </style>
 </head>
 <body>
@@ -501,7 +582,7 @@ a.resource:hover,a.resource:focus-visible{
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#schedule">Schedule</a>
         <a href="#fysm">FYSM</a>
-        <a href="#join">Join</a>
+        <a href="#pricing">Pricing</a>
         <a href="#community">Community</a>
       </nav>
     </div>
@@ -521,10 +602,10 @@ a.resource:hover,a.resource:focus-visible{
     <section class="hero">
       <div class="shell">
         <h1>Your body<br>deserves <span>more.</span></h1>
-        <p class="hero-copy">Beginner-friendly FYSM yoga in Da Nang + online. Build strength, flexibility and body control in a practice that gives you something to work on.</p>
+        <p class="hero-copy">Beginner-friendly FYSM yoga in Da Nang + online. Build strength, flexibility and body control in a calm and rewarding practice.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#contact">Let's chat</a>
-          <a class="btn" href="#schedule">See schedule</a>
+          <a class="btn primary" href="#contact">Free consultation</a>
+          <a class="btn" href="#schedule">View upcoming</a>
         </div>
       </div>
     </section>
@@ -556,25 +637,31 @@ a.resource:hover,a.resource:focus-visible{
       </div>
     </section>
 
-    <section class="section" id="join">
+
+    <section class="section" id="pricing">
       <div class="shell">
-        <h2>Start here</h2>
-        <div class="join-grid">
-          <div class="join-row">
-            <div class="num">01</div>
-            <div><h3>Try a free practice.</h3><p>Check the next public Da Nang or online session and come once. No big commitment.</p></div>
-            <div class="join-actions"><a class="btn primary" href="#schedule">See schedule</a></div>
-          </div>
-          <div class="join-row">
-            <div class="num">02</div>
-            <div><h3>Join a Studio waitlist.</h3><p>Small recurring groups for more consistency, feedback and progression. Da Nang + online.</p></div>
-            <div class="join-actions"><button class="btn primary" data-open="studio-dialog">Join waitlist</button></div>
-          </div>
-          <div class="join-row">
-            <div class="num">03</div>
-            <div><h3>Go 1:1.</h3><p>Best if you want a clear starting point, more individual feedback or a plan around your goals.</p></div>
-            <div class="join-actions"><button class="btn primary" data-open="private-dialog">Ask about 1:1</button></div>
-          </div>
+        <h2>Pricing</h2>
+        <div class="pricing-grid">
+          <article class="price-card price-free">
+            <div class="price-top"><span>Free practice</span><strong>$0</strong></div>
+            <h3>Try it first.</h3>
+            <p>Public FYSM practices in Da Nang and online. Come once, see how it feels, then decide what you want next.</p>
+            <a class="btn primary" href="#schedule">View upcoming</a>
+          </article>
+
+          <article class="price-card price-studio">
+            <div class="price-top"><span>Studio</span><strong>$10 <small>/ class</small></strong></div>
+            <h3>Build consistency.</h3>
+            <p>Small recurring groups with more feedback and progression. Same price online and in Da Nang.</p>
+            <button class="btn primary" data-open="studio-dialog">Join waitlist</button>
+          </article>
+
+          <article class="price-card price-private">
+            <div class="price-top"><span>Private 1:1</span><strong>$50–70</strong></div>
+            <h3>Make it yours.</h3>
+            <p>Private FYSM online or in Da Nang, with the session built around your goals, current level and what your body needs.</p>
+            <button class="btn primary" data-open="private-dialog">Free consultation</button>
+          </article>
         </div>
       </div>
     </section>
