@@ -1079,6 +1079,11 @@ input,select,textarea{font-size:16px}
 .logo-crop-footer{width:110px;height:58px}
 .logo-crop-footer img{width:150px!important;left:-23px!important;top:-3px!important}
 
+
+/* v13 logo crop + timezone render QA */
+.logo-crop-nav{height:34px!important}
+.logo-crop-footer{height:52px!important}
+
 </style>
 </head>
 <body>
@@ -1327,21 +1332,29 @@ function renderNext(){
 function renderCalendar(){
   const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Asia/Ho_Chi_Minh';
   const tzLabel=document.getElementById('timezone-label');
-  if(tzLabel) tzLabel.textContent=tz==='Asia/Ho_Chi_Minh'||tz==='Asia/Saigon'
+  const isDaNang=tz==='Asia/Ho_Chi_Minh'||tz==='Asia/Saigon'||tz==='Asia/Bangkok';
+  if(tzLabel) tzLabel.textContent=isDaNang
     ? 'Times shown in Da Nang time (GMT+7)'
-    : 'Times shown in '+tz+' · Da Nang is GMT+7';
+    : 'Times automatically shown in '+tz+' · Da Nang is GMT+7';
 
-  const order=[1,2,3,4,5,6,0];
-  const names=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  weekGrid.innerHTML=order.map((day,i)=>{
-    const ev=WEEKLY.find(item=>item.day===day);
-    if(!ev) return `<section class="week-day"><div class="week-day-name">${names[i]}</div><div class="week-empty">No class</div></section>`;
+  const baseMonday=28;
+  const dayOffset={1:0,2:1,3:2,4:3,5:4,6:5,0:6};
+  const fmtDay=new Intl.DateTimeFormat('en-GB',{weekday:'short',timeZone:tz});
+  const fmtTime=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:tz});
+
+  const localEvents=WEEKLY.map(ev=>{
+    const [hh,mm]=ev.time.split(':').map(Number);
+    const instant=new Date(Date.UTC(2026,8,baseMonday+dayOffset[ev.day],hh-7,mm));
+    return {...ev,localDay:fmtDay.format(instant),localTime:fmtTime.format(instant),sort:instant.getTime()};
+  }).sort((a,b)=>a.sort-b.sort);
+
+  weekGrid.innerHTML=localEvents.map(ev=>{
     const type=(ev.tags||[]).includes('free')?'free':'online';
     const tag=type==='free'?'FREE · DA NANG':'ONLINE';
     return `<section class="week-day">
-      <div class="week-day-name">${names[i]}</div>
+      <div class="week-day-name">${ev.localDay}</div>
       <a class="week-event ${type}" href="${ev.url}" target="_blank" rel="noopener">
-        <span class="week-time">${ev.time}</span>
+        <span class="week-time">${ev.localTime}</span>
         <strong>${ev.title}</strong>
         <small>${tag}<br>${ev.where}</small>
         <span class="week-link">Open ↗</span>
